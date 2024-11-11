@@ -2,38 +2,47 @@
 <html lang="ja">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>メンバープロフィール</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="./profile.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <header class="header">
-        <div class="header-container">
-            <a href="/index.html" class="home-icon">
-                <i class="fas fa-home"></i>
-            </a>
-            <h2 class="header-title">メンバープロフィール</h2>
+    <h1>たさい</h1>
+    <p>エンジニア</p>
+
+    <img src="image.png" alt="プロフィール画像" class="profile-image fade-in">
+
+    <section class="self-introducation">
+        <h2>自己紹介</h2>
+        <p>こんにちは、私の名前はたさいです。私は〇〇会社の〇〇部ではたらいています。みんなといっしょにITのことを学べるのがたのしみです。</p>
+    </section>
+
+    <section class="favorites">
+        <h2>好きなもの</h2>
+        <div>
+            <span class="skill">担々麺(しびれ強めがいい)</span>
+            <span class="skill">お風呂・銭湯・温泉</span>
+            <span class="skill">河川敷での散歩</span>
         </div>
-    </header>
+    </section>
 
-    <div class="container">
-        <h1>たさい</h1>
+    <section class="residences">
+        <h2>居住歴</h2>
+        <ul>
+            <li>2022年 - 現在: 群馬県桐生市</li>
+            <li>2021年 - 2022年: 神奈川県川崎市</li>
+            <li>2012年 - 2013年: 和歌山県新宮市</li>
+            <li>上記以外の期間: 千葉県松戸市</li>
+        </ul>
+    </section>
 
-        <img src="/users/tasai/image.png" alt="[田斉 省吾]のプロフィール画像" class="profile-image">
-
-        <div class="profile-content">
-            <div class="profile-text">
-                <p>こんにちは、私の名前はたさい しょうごです。私は〇〇会社の〇〇部ではたらいています</p>
-                <p>桐生には2年前にひっこしてきました。広沢に住んでいます。</p>
-                <p>みんなといっしょにITのことを学べるのがたのしみです。</p>
-            </div>
-        </div>
-    </div>
-
+    <section class="hobby">
+        <h2>趣味</h2>
+        <ul>
+            <li>家庭菜園</li>
+            <li>読書</li>
+            <li>プログラミング</li>
+        </ul>
+    </section>
 </body>
 
 </html>
