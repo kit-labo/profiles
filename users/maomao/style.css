@@ -77,3 +77,32 @@
  .fade-in {
      animation: fadeIn 2s ease-in;
  }
+
+ /* 自動音声講座参加者用のおまけ実装用 */
+ .audio-button {
+     display: inline-flex;
+     align-items: center;
+     justify-content: center;
+     width: 24px;
+     height: 24px;
+     border: none;
+     background: none;
+     cursor: pointer;
+     padding: 0;
+     margin-left: 10px;
+     vertical-align: middle;
+ }
+
+ .audio-button:hover {
+     opacity: 0.7;
+ }
+
+ .audio-button img {
+     width: 100%;
+     height: 100%;
+ }
+
+ .audio-button.playing img {
+     /* クリックしたときに変化を生じさせるように青系の色で脚色 */
+     filter: invert(24%) sepia(97%) saturate(1847%) hue-rotate(204deg) brightness(94%) contrast(101%);
+ }
