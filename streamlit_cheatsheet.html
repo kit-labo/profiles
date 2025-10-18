@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Streamlit チートシート - 小中学生向け</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 40px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        .intro {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border-left: 5px solid #fdcb6e;
+        }
+
+        .intro h3 {
+            color: #2d3436;
+            margin-bottom: 10px;
+        }
+
+        .intro ul {
+            margin-left: 20px;
+            color: #2d3436;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .code-block {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .code-block:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .code-title {
+            font-weight: bold;
+            color: #495057;
+            font-size: 1.1em;
+        }
+
+        .copy-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: #764ba2;
+            transform: scale(1.05);
+        }
+
+        .copy-btn:active {
+            transform: scale(0.95);
+        }
+
+        .code-content {
+            background: #2d3436;
+            color: #55efc4;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            overflow-x: auto;
+            white-space: pre;
+        }
+
+        .hint {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 10px 15px;
+            margin-top: 10px;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+
+        .hint strong {
+            color: #856404;
+        }
+
+        .example {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 10px 15px;
+            margin-top: 10px;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+
+        .example strong {
+            color: #0c5460;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+        }
+
+        .emoji {
+            font-size: 1.2em;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            border-radius: 10px;
+            color: white;
+        }
+
+        .keyword {
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+
+        .string {
+            color: #4ecdc4;
+        }
+
+        .comment {
+            color: #95a5a6;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Streamlit チートシート</h1>
+        <p class="subtitle">小中学生のためのプログラミングサポート</p>
+
+        <div class="intro">
+            <h3>📚 使い方</h3>
+            <ul>
+                <li>各コードブロックの「コピー」ボタンを押すとコードがコピーできます</li>
+                <li>❓マークの部分は、自分で考えて入力してね!</li>
+                <li>ヒントを参考にしながら、どんな値を入れるか考えてみよう</li>
+                <li>まずは小さく試して、動いたら少しずつ変えてみよう!</li>
+            </ul>
+        </div>
+
+        <!-- 基本設定 -->
+        <div class="section">
+            <div class="section-title">
+                <span class="emoji">⚙️</span>
+                <span>1. 基本設定</span>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">ライブラリの読み込み</span>
+                    <button class="copy-btn" onclick="copyCode(this, 'import streamlit as st')">📋 コピー</button>
+                </div>
+                <div class="code-content">import streamlit as st</div>
+                <div class="hint">
+                    <strong>💡 これは必ず最初に書こう!</strong> Streamlitを使えるようにする魔法の呪文だよ
+                </div>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">ページの設定</span>
+                    <button class="copy-btn" onclick="copyCode(this, 'st.set_page_config(page_title=❓, page_icon=❓)')">📋 コピー</button>
+                </div>
+                <div class="code-content">st.set_page_config(page_title=❓, page_icon=❓)</div>
+                <div class="hint">
+                    <strong>💡 ヒント:</strong> page_title には「"」で囲んだページのタイトル、page_icon には絵文字を入れよう<br>
+                    <strong>例:</strong> page_title="私のアプリ", page_icon="🌟"
+                </div>
+                <div class="example">
+                    <strong>✅ 完成例:</strong> st.set_page_config(page_title="おみくじ", page_icon="🎴")
+                </div>
+            </div>
+        </div>
+
+        <!-- テキスト表示 -->
+        <div class="section">
+            <div class="section-title">
+                <span class="emoji">📝</span>
+                <span>2. 文字を表示する</span>
+            </div>
+
+            <div class="grid">
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-title">タイトル</span>
+                        <button class="copy-btn" onclick="copyCode(this, 'st.title(❓)')">📋 コピー</button>
+                    </div>
+                    <div class="code-content">st.title(❓)</div>
+                    <div class="hint">
+                        <strong>💡 大きな見出しだよ!</strong><br>
+                        「"」で囲んだ文字を入れよう
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-title">ヘッダー</span>
+                        <button class="copy-btn" onclick="copyCode(this, 'st.header(❓)')">📋 コピー</button>
+                    </div>
+                    <div class="code-content">st.header(❓)</div>
+                    <div class="hint">
+                        <strong>💡 中くらいの見出しだよ!</strong>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-title">サブヘッダー</span>
+                        <button class="copy-btn" onclick="copyCode(this, 'st.subheader(❓)')">📋 コピー</button>
+                    </div>
+                    <div class="code-content">st.subheader(❓)</div>
+                    <div class="hint">
+                        <strong>💡 小さめの見出しだよ!</strong>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-title">普通の文</span>
+                        <button class="copy-btn" onclick="copyCode(this, 'st.write(❓)')">📋 コピー</button>
+                    </div>
+                    <div class="code-content">st.write(❓)</div>
+                    <div class="hint">
+                        <strong>💡 一番よく使う!</strong> 普通の文を表示するよ
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-title">シンプルなテキスト</span>
+                        <button class="copy-btn" onclick="copyCode(this, 'st.text(❓)')">📋 コピー</button>
+                    </div>
+                    <div class="code-content">st.text(❓)</div>
+                    <div class="hint">
+                        <strong>💡</strong> シンプルな文字だけを表示
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-title">マークダウン</span>
+                        <button class="copy-btn" onclick="copyCode(this, 'st.markdown(❓)')">📋 コピー</button>
+                    </div>
+                    <div class="code-content">st.markdown(❓)</div>
+                    <div class="hint">
+                        <strong>💡</strong> **太字**や*斜体*が使えるよ!
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- メッセージボックス -->
+        <div class="section">
+            <div class="section-title">
+                <span class="emoji">💬</span>
+                <span>3. メッセージボックス</span>
+            </div>
+
+            <div class="grid">
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-title">成功メッセージ</span>
+                        <button class="copy-btn" onclick="copyCode(this, 'st.success(❓)')">📋 コピー</button>
+                    </div>
+                    <div class="code-content">st.success(❓)</div>
+                    <div class="hint">
+                        <strong>💡 緑色の成功メッセージ!</strong><br>
+                        「やったね!」みたいな時に使おう
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-title">情報メッセージ</span>
+                        <button class="copy-btn" onclick="copyCode(this, 'st.info(❓)')">📋 コピー</button>
+                    </div>
+                    <div class="code-content">st.info(❓)</div>
+                    <div class="hint">
+                        <strong>💡 青色の情報メッセージ!</strong><br>
+                        お知らせに使おう
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-title">警告メッセージ</span>
+                        <button class="copy-btn" onclick="copyCode(this, 'st.warning(❓)')">📋 コピー</button>
+                    </div>
+                    <div class="code-content">st.warning(❓)</div>
+                    <div class="hint">
+                        <strong>💡 黄色の警告メッセージ!</strong><br>
+                        注意してほしい時に使おう
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-title">エラーメッセージ</span>
+                        <button class="copy-btn" onclick="copyCode(this, 'st.error(❓)')">📋 コピー</button>
+                    </div>
+                    <div class="code-content">st.error(❓)</div>
+                    <div class="hint">
+                        <strong>💡 赤色のエラーメッセージ!</strong><br>
+                        間違いやエラーを表示する時に使おう
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ボタンと入力 -->
+        <div class="section">
+            <div class="section-title">
+                <span class="emoji">🎮</span>
+                <span>4. ボタンと入力</span>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">ボタン</span>
+                    <button class="copy-btn" onclick="copyCode(this, 'if st.button(❓):\n    # ここに押された時の処理を書く')">📋 コピー</button>
+                </div>
+                <div class="code-content">if st.button(❓):
+    <span class="comment"># ここに押された時の処理を書く</span></div>
+                <div class="hint">
+                    <strong>💡 ボタンを作るよ!</strong> ボタンに表示する文字を入れよう<br>
+                    if の次の行は、半角スペース4つ分 下げて書くよ
+                </div>
+                <div class="example">
+                    <strong>✅ 完成例:</strong><br>
+                    if st.button("クリック!"):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;st.success("押されたよ!")
+                </div>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">テキスト入力</span>
+                    <button class="copy-btn" onclick="copyCode(this, 'name = st.text_input(❓)')">📋 コピー</button>
+                </div>
+                <div class="code-content">name = st.text_input(❓)</div>
+                <div class="hint">
+                    <strong>💡 文字を入力してもらうよ!</strong><br>
+                    入力欄の上に表示する説明文を入れよう<br>
+                    入力された文字は name という変数に保存されるよ
+                </div>
+                <div class="example">
+                    <strong>✅ 完成例:</strong> name = st.text_input("あなたの名前は?")
+                </div>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">数値入力</span>
+                    <button class="copy-btn" onclick="copyCode(this, 'number = st.number_input(❓, min_value=❓, max_value=❓, value=❓)')">📋 コピー</button>
+                </div>
+                <div class="code-content">number = st.number_input(❓, min_value=❓, max_value=❓, value=❓)</div>
+                <div class="hint">
+                    <strong>💡 数字を入力してもらうよ!</strong><br>
+                    最初の❓: 説明文<br>
+                    min_value: 最小の値、max_value: 最大の値<br>
+                    value: 最初に表示される数字
+                </div>
+                <div class="example">
+                    <strong>✅ 完成例:</strong> number = st.number_input("好きな数字", min_value=1, max_value=100, value=50)
+                </div>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">スライダー</span>
+                    <button class="copy-btn" onclick="copyCode(this, 'value = st.slider(❓, ❓, ❓, ❓)')">📋 コピー</button>
+                </div>
+                <div class="code-content">value = st.slider(❓, ❓, ❓, ❓)</div>
+                <div class="hint">
+                    <strong>💡 スライダーで数を選んでもらうよ!</strong><br>
+                    1つ目の❓: 説明文<br>
+                    2つ目の❓: 最小値、3つ目の❓: 最大値<br>
+                    4つ目の❓: 最初の位置
+                </div>
+                <div class="example">
+                    <strong>✅ 完成例:</strong> age = st.slider("年齢は?", 0, 100, 10)
+                </div>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">セレクトボックス</span>
+                    <button class="copy-btn" onclick="copyCode(this, 'choice = st.selectbox(❓, [❓, ❓, ❓])')">📋 コピー</button>
+                </div>
+                <div class="code-content">choice = st.selectbox(❓, [❓, ❓, ❓])</div>
+                <div class="hint">
+                    <strong>💡 選択肢から選んでもらうよ!</strong><br>
+                    1つ目の❓: 説明文<br>
+                    [ ] の中に選択肢を「"」で囲んで入れよう
+                </div>
+                <div class="example">
+                    <strong>✅ 完成例:</strong> choice = st.selectbox("好きな色は?", ["赤", "青", "緑"])
+                </div>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">ラジオボタン</span>
+                    <button class="copy-btn" onclick="copyCode(this, 'choice = st.radio(❓, [❓, ❓, ❓])')">📋 コピー</button>
+                </div>
+                <div class="code-content">choice = st.radio(❓, [❓, ❓, ❓])</div>
+                <div class="hint">
+                    <strong>💡 選択肢をボタンで表示するよ!</strong><br>
+                    使い方は selectbox と同じだよ
+                </div>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">チェックボックス</span>
+                    <button class="copy-btn" onclick="copyCode(this, 'if st.checkbox(❓):\n    # チェックされた時の処理')">📋 コピー</button>
+                </div>
+                <div class="code-content">if st.checkbox(❓):
+    <span class="comment"># チェックされた時の処理</span></div>
+                <div class="hint">
+                    <strong>💡 チェックボックスを作るよ!</strong><br>
+                    チェックされたら True、されてなければ False
+                </div>
+            </div>
+        </div>
+
+        <!-- レイアウト -->
+        <div class="section">
+            <div class="section-title">
+                <span class="emoji">📐</span>
+                <span>5. レイアウト</span>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">区切り線</span>
+                    <button class="copy-btn" onclick="copyCode(this, 'st.divider()')">📋 コピー</button>
+                </div>
+                <div class="code-content">st.divider()</div>
+                <div class="hint">
+                    <strong>💡 横線を引くよ!</strong> セクションを分けたい時に使おう
+                </div>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">カラム(2列)</span>
+                    <button class="copy-btn" onclick="copyCode(this, 'col1, col2 = st.columns(2)\nwith col1:\n    # 左側の内容\nwith col2:\n    # 右側の内容')">📋 コピー</button>
+                </div>
+                <div class="code-content">col1, col2 = st.columns(2)
+with col1:
+    <span class="comment"># 左側の内容</span>
+with col2:
+    <span class="comment"># 右側の内容</span></div>
+                <div class="hint">
+                    <strong>💡 画面を2つに分けるよ!</strong><br>
+                    数字を変えれば3列、4列もできるよ
+                </div>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">カラム(3列)</span>
+                    <button class="copy-btn" onclick="copyCode(this, 'col1, col2, col3 = st.columns(3)\nwith col1:\n    # 左側\nwith col2:\n    # 真ん中\nwith col3:\n    # 右側')">📋 コピー</button>
+                </div>
+                <div class="code-content">col1, col2, col3 = st.columns(3)
+with col1:
+    <span class="comment"># 左側</span>
+with col2:
+    <span class="comment"># 真ん中</span>
+with col3:
+    <span class="comment"># 右側</span></div>
+                <div class="hint">
+                    <strong>💡 画面を3つに分けるよ!</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- グラフとデータ -->
+        <div class="section">
+            <div class="section-title">
+                <span class="emoji">📊</span>
+                <span>6. グラフとデータ表示</span>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">データフレーム表示</span>
+                    <button class="copy-btn" onclick="copyCode(this, 'st.dataframe(❓)')">📋 コピー</button>
+                </div>
+                <div class="code-content">st.dataframe(❓)</div>
+                <div class="hint">
+                    <strong>💡 表を表示するよ!</strong><br>
+                    pandasのDataFrameを入れよう
+                </div>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">棒グラフ</span>
+                    <button class="copy-btn" onclick="copyCode(this, 'st.bar_chart(❓)')">📋 コピー</button>
+                </div>
+                <div class="code-content">st.bar_chart(❓)</div>
+                <div class="hint">
+                    <strong>💡 棒グラフを描くよ!</strong><br>
+                    DataFrameやリストを入れよう
+                </div>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">折れ線グラフ</span>
+                    <button class="copy-btn" onclick="copyCode(this, 'st.line_chart(❓)')">📋 コピー</button>
+                </div>
+                <div class="code-content">st.line_chart(❓)</div>
+                <div class="hint">
+                    <strong>💡 折れ線グラフを描くよ!</strong>
+                </div>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">面グラフ</span>
+                    <button class="copy-btn" onclick="copyCode(this, 'st.area_chart(❓)')">📋 コピー</button>
+                </div>
+                <div class="code-content">st.area_chart(❓)</div>
+                <div class="hint">
+                    <strong>💡 面グラフを描くよ!</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- アニメーション -->
+        <div class="section">
+            <div class="section-title">
+                <span class="emoji">🎉</span>
+                <span>7. アニメーション</span>
+            </div>
+
+            <div class="grid">
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-title">風船</span>
+                        <button class="copy-btn" onclick="copyCode(this, 'st.balloons()')">📋 コピー</button>
+                    </div>
+                    <div class="code-content">st.balloons()</div>
+                    <div class="hint">
+                        <strong>💡 お祝いの風船が飛ぶよ!</strong>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-title">読み込み中</span>
+                        <button class="copy-btn" onclick="copyCode(this, 'with st.spinner(❓):\n    # 処理を書く')">📋 コピー</button>
+                    </div>
+                    <div class="code-content">with st.spinner(❓):
+    <span class="comment"># 処理を書く</span></div>
+                    <div class="hint">
+                        <strong>💡 くるくる回るアニメーション!</strong><br>
+                        「"」で囲んだメッセージを入れよう
+                    </div>
+                    <div class="example">
+                        <strong>✅ 完成例:</strong><br>
+                        with st.spinner("計算中..."):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;time.sleep(2)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- よく使うパターン -->
+        <div class="section">
+            <div class="section-title">
+                <span class="emoji">⭐</span>
+                <span>8. よく使うパターン</span>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">基本的なアプリの構造</span>
+                    <button class="copy-btn" onclick="copyCode(this, 'import streamlit as st\n\nst.set_page_config(page_title=❓, page_icon=❓)\n\nst.title(❓)\nst.write(❓)\n\nif st.button(❓):\n    st.success(❓)')">📋 コピー</button>
+                </div>
+                <div class="code-content">import streamlit as st
+
+st.set_page_config(page_title=❓, page_icon=❓)
+
+st.title(❓)
+st.write(❓)
+
+if st.button(❓):
+    st.success(❓)</div>
+                <div class="hint">
+                    <strong>💡 これが基本の形!</strong> ここから始めてみよう
+                </div>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">入力があるかチェック</span>
+                    <button class="copy-btn" onclick="copyCode(this, 'name = st.text_input(❓)\nif name:\n    st.write(f\"こんにちは、{name}さん!\")\nelse:\n    st.warning(\"名前を入力してね!\")')">📋 コピー</button>
+                </div>
+                <div class="code-content">name = st.text_input(❓)
+if name:
+    st.write(f"こんにちは、{name}さん!")
+else:
+    st.warning("名前を入力してね!")</div>
+                <div class="hint">
+                    <strong>💡 入力があるか確認するパターン!</strong><br>
+                    if name: で入力があるかチェックできるよ
+                </div>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-title">条件分岐(if-elif-else)</span>
+                    <button class="copy-btn" onclick="copyCode(this, 'value = st.slider(❓, ❓, ❓, ❓)\n\nif value < ❓:\n    st.info(❓)\nelif value < ❓:\n    st.warning(❓)\nelse:\n    st.success(❓)')">📋 コピー</button>
+                </div>
+                <div class="code-content">value = st.slider(❓, ❓, ❓, ❓)
+
+if value < ❓:
+    st.info(❓)
+elif value < ❓:
+    st.warning(❓)
+else:
+    st.success(❓)</div>
+                <div class="hint">
+                    <strong>💡 値によって違う処理をするパターン!</strong><br>
+                    if: もし〜なら<br>
+                    elif: そうじゃなくて〜なら<br>
+                    else: それ以外なら
+                </div>
+            </div>
+        </div>
+
+        <!-- Pythonの基本 -->
+        <div class="section">
+            <div class="section-title">
+                <span class="emoji">🐍</span>
+                <span>9. Pythonの基本も覚えよう</span>
+            </div>
+
+            <div class="grid">
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-title">変数に保存</span>
+                        <button class="copy-btn" onclick="copyCode(this, 'name = \"たろう\"\nage = 12')">📋 コピー</button>
+                    </div>
+                    <div class="code-content">name = "たろう"
+age = 12</div>
+                    <div class="hint">
+                        <strong>💡 値を保存しておくよ!</strong><br>
+                        文字は「"」で囲む、数字はそのまま
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-title">リスト</span>
+                        <button class="copy-btn" onclick="copyCode(this, 'colors = [\"赤\", \"青\", \"緑\"]')">📋 コピー</button>
+                    </div>
+                    <div class="code-content">colors = ["赤", "青", "緑"]</div>
+                    <div class="hint">
+                        <strong>💡 複数の値をまとめるよ!</strong><br>
+                        [ ] で囲んで、,(カンマ)で区切る
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-title">f文字列</span>
+                        <button class="copy-btn" onclick="copyCode(this, 'name = \"たろう\"\nst.write(f\"こんにちは、{name}さん!\")')">📋 コピー</button>
+                    </div>
+                    <div class="code-content">name = "たろう"
+st.write(f"こんにちは、{name}さん!")</div>
+                    <div class="hint">
+                        <strong>💡 変数を文字の中に入れるよ!</strong><br>
+                        f"文字{変数}文字" という形で使う
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <h3>🎓 プログラミングのコツ</h3>
+            <p style="margin-top: 10px;">
+                ✨ 小さく試して、動いたら少しずつ変えてみよう!<br>
+                ✨ エラーが出ても大丈夫!何度でもやり直せるよ<br>
+                ✨ わからない時は、例を真似して少しずつ変えてみよう<br>
+                ✨ 楽しみながら作るのが一番大事!
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function copyCode(button, code) {
+            // ❓をそのままコピーするための処理
+            const textToCopy = code;
+
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const originalText = button.textContent;
+                button.textContent = '✅ コピーしたよ!';
+                button.style.background = '#00b894';
+
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = '#667eea';
+                }, 2000);
+            }).catch(err => {
+                alert('コピーできませんでした。もう一度試してね!');
+            });
+        }
+    </script>
+</body>
+</html>
